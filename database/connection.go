@@ -17,6 +17,10 @@ func Connect(connString string) error {
 	if err != nil {
 		return fmt.Errorf("Failed to create connection pool: %v\n", err)
 	}
+	if _, err = dbPool.Exec(context.Background(), "SELECT 1"); err != nil {
+		return fmt.Errorf("Failed to ping database: %v\n", err)
+	}
+
 	log.Println("🚀connected to database")
 	return nil
 }
