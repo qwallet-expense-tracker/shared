@@ -11,6 +11,7 @@ var client *redis.Client
 
 // Connect initializes the cache client
 func Connect(address, password string, db int) error {
+	log.Println("❄️connecting to cache...")
 	client = redis.NewClient(&redis.Options{
 		Addr:     address,
 		Password: password,
@@ -21,7 +22,7 @@ func Connect(address, password string, db int) error {
 	if _, err := client.Ping(context.Background()).Result(); err != nil {
 		return err
 	}
-
+	log.Println("🚀️connected to cache")
 	return nil
 }
 
