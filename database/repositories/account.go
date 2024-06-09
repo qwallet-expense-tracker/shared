@@ -12,6 +12,7 @@ type accountRepository struct {
 	interfaces.IAccountRepository
 }
 
+// New creates a new instance of the `accountRepository`
 func New() interfaces.IAccountRepository {
 	return &accountRepository{}
 }
