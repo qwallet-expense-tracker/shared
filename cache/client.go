@@ -11,7 +11,7 @@ var client *redis.Client
 
 // Connect initializes the cache client
 func Connect(address, password string, db int) error {
-	client := redis.NewClient(&redis.Options{
+	client = redis.NewClient(&redis.Options{
 		Addr:     address,
 		Password: password,
 		DB:       db,
