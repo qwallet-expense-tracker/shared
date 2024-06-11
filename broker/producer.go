@@ -1,4 +1,4 @@
-package kafka
+package broker
 
 import (
 	"fmt"
@@ -24,7 +24,7 @@ func ProduceMessage(p *kafka.Producer, topic string, key, value []byte) error {
 	}, deliveryChan); err != nil {
 		return fmt.Errorf("failed to produce message: %w", err)
 	}
-
+	
 	e := <-deliveryChan
 	m := e.(*kafka.Message)
 	if m.TopicPartition.Error != nil {

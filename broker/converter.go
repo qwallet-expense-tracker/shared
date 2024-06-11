@@ -1,4 +1,4 @@
-package kafka
+package broker
 
 import (
 	"github.com/confluentinc/confluent-kafka-go/v2/kafka"
@@ -8,11 +8,14 @@ import (
 
 // ConvertMessageToProto converts a message to a protobuf message
 func ConvertMessageToProto(msg *kafka.Message, out proto.Message) {
-	// convert to account payload
 	log.Printf("Consumed message from Kafka: %s\n", string(msg.Value))
-	
-	// convert to account payload
 	if err := proto.Unmarshal(msg.Value, out); err != nil {
 		log.Printf("Failed to unmarshal message: %v", err)
 	}
+}
+
+// ConvertProtoToMessage converts a protobuf message to a byte array
+func ConvertProtoToMessage(in proto.Message) ([]byte, error) {
+	log.Printf("Producing message to Kafka: %v\n", in)
+	return proto.Marshal(in)
 }
