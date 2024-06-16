@@ -1,4 +1,4 @@
-package kafka
+package broker
 
 // AccountTopic represents the topic for account events.
 type AccountTopic string
